@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Get info on API's",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Turleque Fabrice",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "sequelize": "^6.19.2",
+    "sqlite3": "^5.0.8"
+  }
+}
