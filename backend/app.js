@@ -1,5 +1,8 @@
 const express = require('express')
 const routers = require('./routers')
+const db = require('./models/index')
+
+db.sequelize.sync({ force: true })
 
 const app = express()
 

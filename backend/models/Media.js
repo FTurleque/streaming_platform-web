@@ -1,5 +1,5 @@
-"use strict"
-const { Model } = require("sequelize")
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Media extends Model {
     /**
@@ -7,15 +7,34 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Movie, Collection }) {
+    static associate({
+      Movie,
+      Collection,
+      ProductionCompany,
+      Country,
+      TypeOfMovie,
+      Person,
+      Work,
+    }) {
       // define association here
-      this.belongsTo(Movie, { foreignKey: 'movie_id' })
-      
-      this.belongsTo(Collection, { foreignKey: 'collection_id' })
+      this.belongsTo(Movie, { foreignKey: "movie_id" });
+      this.belongsTo(Collection, { foreignKey: "collection_id" });
+      this.belongsToMany(ProductionCompany, { through: "produce" });
+      this.belongsToMany(Country, { through: "come" });
+      this.belongsToMany(TypeOfMovie, { through: "type" });
+      this.belongsToMany(Person, { through: Work });
+      this.hasMany(Work, {
+        foreignKey: { name: "media_id", allowNull: false },
+      });
     }
   }
   Media.init(
     {
+      media_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -37,26 +56,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       serie_id: {
-          type: DataTypes.INTEGER,
-          allowNull: true,
-          // ForeignKey
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        // ForeignKey
       },
-      // movie_id: {
-      //     type: DataTypes.INTEGER,
-      //     allowNull: true,
-      //     // ForeignKey
-      // },
-      // collection_id: {
-      //     type: DataTypes.INTEGER,
-      //     allowNull: true,
-      //     // ForeignKey
-      // }
     },
     {
       sequelize,
-      tableName: 'medias',
+      tableName: "medias",
       modelName: "Media",
     }
-  )
-  return Media
-}
+  );
+  return Media;
+};

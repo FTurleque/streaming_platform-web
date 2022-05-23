@@ -1,7 +1,7 @@
 {
   "development": {
     "database": "sequelize_db_movies.sqlite",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "sqlite"
   },
   "test": {

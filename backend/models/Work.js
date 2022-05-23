@@ -1,48 +1,48 @@
 "use strict";
 const { Model } = require("sequelize");
-const Movie = require("./Movie");
-
 module.exports = (sequelize, DataTypes) => {
-  class Collection extends Model {
+  class Work extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Media }) {
+    static associate({ Media, Person }) {
       // define association here
-      this.hasMany(Media, {
-        foreignKey: { name: "collection_id", allowNull: true },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-      });
+      this.belongsTo(Media, { foreignKey: "media_id" });
+      this.belongsTo(Person, { foreignKey: "person_id" });
     }
   }
-  Collection.init(
+  Work.init(
     {
-      collection_id: {
+      person_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
-      name: {
+      media_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      department: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      poster_path: {
+      job: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      backdrop_path: {
+      character_name: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     },
     {
       sequelize,
-      tableName: "collections",
-      modelName: "Collection",
+      tableName: "worker",
+      modelName: "Work",
     }
   );
-  return Collection;
+  return Work;
 };
