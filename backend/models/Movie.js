@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
         static associate({ Media }) {
           // define association here
           this.hasOne(Media, { 
-              foreignKey: { name: 'movie_id', allowNull: true }
+              foreignKey: { name: 'movie_id', allowNull: true },
+              onDelete: 'CASCADE',
+              onUpdate: 'CASCADE'
             })
         }
     }
@@ -38,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
-            duration: {
-                type: DataTypes.TIME,
-                allowNull: false,
+            runtime: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
             },
             trailer_url: {
                 type: DataTypes.STRING,

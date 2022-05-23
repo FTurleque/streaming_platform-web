@@ -11,20 +11,18 @@ module.exports = (sequelize, DataTypes) => {
         static associate({ ProductionCompany }) {
             // define association here
             this.hasMany(ProductionCompany, {
-                foreignKey: { name: 'country_id', allowNull: false }
+                foreignKey: { name: 'country_id', allowNull: false },
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         }
     }
     Country.init(
         {
-            country_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                primaryKey: true
-            },
             iso_3166_1: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                primaryKey: true
             },
             name: {
                 type: DataTypes.STRING,

@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         static associate({ Media }) {
             // define association here
             this.hasMany(Media, {
-                foreignKey: { name: 'collection_id', allowNull: true }
+                foreignKey: { name: 'collection_id', allowNull: true },
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         }
     }

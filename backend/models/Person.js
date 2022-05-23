@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
         static associate({ Gender, PicturePerson }) {
           // define association here
           // gender_id
-          this.belongsTo(Gender, { foreignKey: 'gender_id' })
+        //   this.belongsTo(Gender, { foreignKey: 'gender_id' })
 
           this.hasMany(PicturePerson, { 
-              foreignKey: { name: 'person_id', allowNull: true }
+              foreignKey: { name: 'person_id', allowNull: true },
+              onDelete: 'CASCADE',
+              onUpdate: 'CASCADE'
             })
         }
     }
@@ -28,12 +30,17 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            gender: {
+                type: DataTypes.ENUM,
+                values: ['male', 'female', 'intersex'],
+                allowNull: false
+            },
             biography: {
                 type: DataTypes.STRING,
                 allowNull: true
             },
             birthdate: {
-                type: DataTypes.DATE,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             place_of_birth: {
@@ -41,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: true
             },
             deathday: {
-                type: DataTypes.DATE,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             profile_path: {
