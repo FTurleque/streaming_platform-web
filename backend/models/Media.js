@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       media_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
       },
       title: {

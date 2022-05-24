@@ -55,12 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       profile_path: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
-      // gender_id: {
-      //     type: DataTypes.INTEGER,
-      //     allowNull: false,
-      //     // Foreign key Gender
-      // }
+      }
     },
     {
       sequelize,
