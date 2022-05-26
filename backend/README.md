@@ -10,6 +10,11 @@
 **Initialisation de sequelize**
 - npx sequelize init
 
+**Installation de Dotenv**  
+- npm i dotenv // Rajouter dans le gitignore pour les variable perso
+
+**Instalation d'Axios**  
+
 npm install axios
 
 Utilisation de l'env

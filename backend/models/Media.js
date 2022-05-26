@@ -32,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       media_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -56,11 +55,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      serie_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        // ForeignKey
-      },
+      seen: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      }
     },
     {
       sequelize,
